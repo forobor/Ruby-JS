@@ -1,0 +1,60 @@
+<%= javascript_include_tag "application" %>
+<script type='text/javascript'>
+
+		function clearForm (event){
+			event.preventDefault();
+			document.getElementById('form-create-todo').reset();
+		}
+		function submitForm (event){
+			event.preventDefault();
+			document.getElementById('form-create-todo').submit();
+		}
+
+</script>
+<div class="cover"></div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="header">
+				<div class="col-lg-offset-5 col-lg-1 col-md-offset-5 col-md-1 col-sm-offset-5 col-sm-1 col-xs-offset-5 col-xs-1"><h1>Задачи</h1></div>
+				<div class="col-lg-offset-5 col-lg-1 col-md-offset-5 col-md-1 col-sm-offset-5 col-sm-1 col-xs-offset-5 col-xs-1"><span id="show-form"> + </span></div>
+			</div>
+	</div>
+	 <div class="row center-block" >
+			<% @projects.each do |project| %>
+				<div class = 'col-lg-4 col-md-6 col-sm-12 col-xs-12'>
+					<div class ='project '>
+					<h2><%= project.title %></h2>
+					<hr/>
+						<ul>
+							<% project.todos.each do |todo| %>
+								<%= form_for :todo, url: edit_project_path(todo),  :html=> { :method => 'GET', :class => 'form-update-todo', :id=>'form-update-todo-' + todo.id.to_s} do |tf| %>
+										<li>
+											<% if todo.isCompleted == true %>
+												<%= tf.check_box :isCompleted, id: ('todo_' + todo.id.to_s), checked: 'checked' %>
+												<%= tf.label todo.id, todo.text %>
+											<% else %>
+												<%= tf.check_box :isCompleted, id: ('todo_' + todo.id.to_s) %>
+												<%= tf.label todo.id, todo.text %>
+											<% end %>
+										</li>
+									<% end %>
+							<% end %>
+						</ul>
+					</div>
+					</div>
+			<% end %>
+		</div>
+
+		<div class='back'>
+			<div class="todo-form">
+				<h4> Новая задача </h4>
+				<hr/>
+				<%= form_for :todo, url: projects_path, :html=> {:id => 'form-create-todo'} do |f| %>
+					<%= f.text_field :text, placeholder: "Название задачи..." %><br />
+					<%= f.select "project", options_from_collection_for_select(@projects, "id", "title") %><br/>
+					<div id='cancel' onClick={clearForm(event)}>Отмена</div> <div id='ok' href='' onClick={submitForm(event)}>ОК</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
