@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   def index
+    projects = Project.includes(:todos, :title)
   	@projects = Project.all
   	@todos = Todo.all
   end

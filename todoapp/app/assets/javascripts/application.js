@@ -27,8 +27,15 @@ $(document).ready(function() {
 
 			$(function () {
 				$('#cancel').click(function() {
+					$('#form-create-todo').trigger('reset');
 					$('.todo-form').slideUp();
 					$('.cover').hide();
+				});
+			});
+
+			$(function () {
+				$('#ok').click(function() {
+					$('#form-create-todo').submit();
 				});
 			});
 
@@ -42,7 +49,7 @@ $(document).ready(function() {
 			$(function () {
 				$(".form-update-todo *").click(function(event) {
 					if(!event.target.form){
-						console.log(event.target.offsetParent.firstChild.form.submit());
+						event.target.offsetParent.firstChild.form.submit();
 					} else {
 						event.target.form.submit();
 					}
