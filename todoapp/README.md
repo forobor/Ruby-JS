@@ -1,24 +1,17 @@
-# README
+# Todo - лист
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h2> Используемые технологии: </h1>
+<ol>
+<li>Ruby on Rails </li>
+<li>JavaScript</li>
+<li>jQuery</li>
+<li>Bootstrap</li>
+<li>Postgres</li>
+</ol>
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<h2>Возможности приложения:</h2>
+<ol>
+<li>Создание заметок</li>
+<li>Изменение заметок</li>
+<li>Адаптивность</li>
+</ol>
